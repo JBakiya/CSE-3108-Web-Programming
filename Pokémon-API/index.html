@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pokémon Field Journal · API Homework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <p class="eyebrow">
+        <svg class="eyebrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12h7M15 12h7" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+        </svg>
+        Field Research Unit 
+      </p>
+      <h1 class="brand-title">Pokémon <span class="brand-title-accent">Field Journal</span></h1>
+      <p class="brand-sub">Search the PokéAPI, log a specimen entry, and inspect its recorded vitals</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="panel search-panel" aria-labelledby="search-heading">
+      <h2 id="search-heading" class="panel-label">Live Search <span class="mono">GET /api/v2/pokemon/&#123;name&#125;</span></h2>
+
+      <form id="search-form" class="search-form" novalidate>
+        <div class="field-group">
+          <label for="pokemon-input">Find a Pokémon</label>
+          <div class="input-row">
+            <input
+              type="text"
+              id="pokemon-input"
+              name="pokemon"
+              placeholder="e.g. mewtwo"
+              autocomplete="off"
+              aria-describedby="input-help"
+            >
+            <button type="submit" id="search-btn" class="btn-primary">
+              <span class="btn-label">Search</span>
+              <span class="btn-icon" aria-hidden="true">→</span>
+            </button>
+          </div>
+          <span id="input-help" class="sr-only">Enter a Pokémon name or National Pokédex number, then press Enter or select Search.</span>
+        </div>
+
+        <div class="quick-search" role="group" aria-label="Quick search examples">
+          <span class="quick-label">Quick search:</span>
+          <button type="button" class="chip" data-name="pikachu">Pikachu</button>
+          <button type="button" class="chip" data-name="charizard">Charizard</button>
+          <button type="button" class="chip" data-name="bulbasaur">Bulbasaur</button>
+          <button type="button" class="chip" data-name="mewtwo">Mewtwo</button>
+          <button type="button" class="chip" data-name="gengar">Gengar</button>
+          <button type="button" class="chip" data-name="lucario">Lucario</button>
+          <button type="button" class="chip" data-name="gyarados">Gyarados</button>
+          <button type="button" class="chip" data-name="umbreon">Umbreon</button>
+          <button type="button" class="chip" data-name="dragonite">Dragonite</button>
+          <button type="button" class="chip" data-name="snorlax">Snorlax</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="status-area" class="status-area" aria-live="polite" aria-atomic="true"></section>
+
+    <section id="record-section" class="record hidden" aria-labelledby="record-heading">
+
+      <article class="record-card" id="record-card">
+
+        <header class="record-top">
+          <div class="record-id-block">
+            <p class="panel-label" id="record-heading">Specimen Record</p>
+            <p class="record-id" id="pokemon-id">#000</p>
+          </div>
+          <div class="type-badges" id="type-badges"></div>
+        </header>
+
+        <div class="stamp" id="record-stamp" aria-hidden="true">VERIFIED<br>ENTRY</div>
+
+        <div class="record-body">
+          <div class="artwork-col">
+            <div class="artwork-frame">
+              <img id="pokemon-artwork" src="" alt="" width="240" height="240">
+            </div>
+            <h3 class="pokemon-name" id="pokemon-name">—</h3>
+          </div>
+
+          <div class="details-col">
+
+            <div class="detail-grid">
+              <div class="detail-box">
+                <span class="detail-label">Height</span>
+                <span class="detail-value" id="pokemon-height">—</span>
+              </div>
+              <div class="detail-box">
+                <span class="detail-label">Weight</span>
+                <span class="detail-value" id="pokemon-weight">—</span>
+              </div>
+            </div>
+
+            <div class="abilities-block">
+              <span class="detail-label">Abilities</span>
+              <ul class="abilities-list" id="abilities-list"></ul>
+            </div>
+
+            <div class="field-note" id="field-note"></div>
+
+          </div>
+        </div>
+
+      </article>
+
+      <article class="stats-card">
+        <div class="stats-head">
+          <h3 class="panel-label">Battle Profile · Base Stats</h3>
+          <span class="mono small">source: data.stats</span>
+        </div>
+        <dl class="stats-list" id="stats-list"></dl>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Data courtesy of <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
